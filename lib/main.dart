@@ -1,12 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:poke_review/data/providers/pokemon_api_provider.dart';
+import 'package:poke_review/data/viewmodels/one_pokemon_view_model.dart';
+import 'package:poke_review/data/viewmodels/user_view_model.dart';
 import 'package:poke_review/pages/pokemon_list_page.dart';
 import 'package:provider/provider.dart';
-
-import 'data/viewmodels/one_pokemon_view_model.dart';
 import 'data/viewmodels/pokemon_list_view_model.dart';
+import 'pages/auth/signin_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase?.initializeApp();
+  runApp(MaterialApp(home: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,18 +22,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => PokemonListViewModel()),
-        ChangeNotifierProvider(create: (context) => OnePokemonViewModel()),
-      ],
       child: MaterialApp(
-        home: const PokemonListPage(),
-        title: 'Flutter Demo',
+        title: 'PokeReview',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        home: FirebaseAuth.instance.currentUser != null
+            ? PokemonListPage()
+            : const SignInScreen(),
       ),
-    ); 
+      providers: [
+        ChangeNotifierProvider(create: (context) => PokemonListViewModel()),
+        ChangeNotifierProvider(create: (context) => OnePokemonViewModel()),
+        ChangeNotifierProvider(create: (context) => UserViewModel())
+      ],
+    );
   }
 }
 
