@@ -1,7 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:poke_review/signin_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase?.initializeApp();
+  //runApp(const MyApp());
+  runApp(MaterialApp(home: const MyApp()));
+}
+
+_signOut() async {
+  await FirebaseAuth.instance.signOut();
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +34,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: FirebaseAuth.instance.currentUser != null ? const MyHomePage(title: 'My Home Page') : const SignInScreen(),
     );
   }
 }
@@ -102,6 +112,17 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            ElevatedButton(
+                onPressed: () async {
+                  await _signOut();
+                  if (FirebaseAuth.instance.currentUser == null) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignInScreen()),
+                    );
+                  }
+                },
+                child: const Center(child: Text('Sign out')))
           ],
         ),
       ),
