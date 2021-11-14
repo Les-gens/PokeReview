@@ -20,7 +20,7 @@ class Pokemon {
     _stats = stats;
     _types = types;
     _weight = weight;
-}
+  }
 
   Pokemon.fromJson(dynamic json) {
     if (json['abilities'] != null) {

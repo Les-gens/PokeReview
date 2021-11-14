@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:poke_review/pages/pokemon_list_page.dart';
+import 'package:provider/provider.dart';
+
+import 'data/viewmodels/pokemon_view_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +28,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: ChangeNotifierProvider(
+        create: (context) => PokemonListViewModel(), 
+        child: PokemonListPage(),
+      ),
     );
   }
 }
