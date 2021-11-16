@@ -11,13 +11,11 @@ class PokemonCard extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     var pokemonId = pokemon.url?.split("/")[6];
-    // var imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${pokemonId}.png';
     var imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/$pokemonId.png';
-    print(imgUrl);
     return Row(
       children: [
         Image.network(imgUrl, width: 100, height: 100),
-        Text('${pokemon.name}'),
+        Text('${pokemon.name}', style: const TextStyle(fontSize: 40),),
 
       ],
     );
