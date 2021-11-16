@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:poke_review/data/models/pokemon.dart';
 import 'package:poke_review/data/viewmodels/pokemon_view_model.dart';
 
 class PokemonCard extends StatelessWidget{
@@ -11,11 +10,13 @@ class PokemonCard extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    print(pokemon);
-    print(pokemon);
+    var pokemonId = pokemon.url?.split("/")[6];
+    // var imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${pokemonId}.png';
+    var imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/$pokemonId.png';
+    print(imgUrl);
     return Row(
       children: [
-        // Image.network('${pokemon.sprites?.backDefault}'),
+        Image.network(imgUrl, width: 100, height: 100),
         Text('${pokemon.name}'),
 
       ],

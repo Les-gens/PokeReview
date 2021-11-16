@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 
-import 'package:poke_review/data/models/pokemon.dart';
 import 'package:http/http.dart' as http;
 import 'package:poke_review/data/models/pokemon_list_item.dart';
 
@@ -16,7 +15,7 @@ class PokemonApiProvider {
   
   Future<List<PokemonListItem>> getAllPokemon() async {
     var uri = Uri.parse('https://pokeapi.co/api/v2/pokemon?limit=20');
-
+    print(uri);
     var responseFromApi = await http.get(uri);
     if(responseFromApi.statusCode == 200) {
 
