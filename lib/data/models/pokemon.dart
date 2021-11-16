@@ -1,5 +1,9 @@
 class Pokemon {
+  var _url;
+
+
   Pokemon({
+      String? url,
       List<Abilities>? abilities, 
       int? height, 
       int? id, 
@@ -10,6 +14,7 @@ class Pokemon {
       List<Stats>? stats, 
       List<Types>? types, 
       int? weight,}){
+    _url = url;
     _abilities = abilities;
     _height = height;
     _id = id;
@@ -23,6 +28,9 @@ class Pokemon {
   }
 
   Pokemon.fromJson(dynamic json) {
+    if (json['url'] != null) {
+      _url = json['url'];
+    }
     if (json['abilities'] != null) {
       _abilities = [];
       json['abilities'].forEach((v) {

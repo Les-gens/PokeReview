@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poke_review/data/viewmodels/pokemon_view_model.dart';
+import 'package:poke_review/pages/widgets/pokemon_card.dart';
 import 'package:provider/provider.dart';
 
 class PokemonListPage extends StatefulWidget {
@@ -26,17 +27,12 @@ class _PokemonListPageState extends State<PokemonListPage> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<PokemonListViewModel>(context);
-    vm.pokemons.forEach((element) {print(element.name);});
     return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
-        return Container(
-          height: 50,
-          color: Colors.amber[colorCodes[index]],
-          child: Center(child: Text('${vm.pokemons[index].name}')),
-        );
+        return PokemonCard(pokemon: vm.pokemons[index]);
       }, 
       separatorBuilder: (BuildContext context, int index) => const Divider(), 
-      itemCount: entries.length
+      itemCount: vm.pokemons.length
     );
   }
   

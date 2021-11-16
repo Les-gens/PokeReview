@@ -48,13 +48,8 @@ class PokemonViewModel {
   int? get weight {
     return pokemon.weight;
   }
-
-
-
-
-
-
-
-
+  String? get url {
+    return pokemon.url;
+  }
 
 }
