@@ -224,7 +224,7 @@ class Sprites {
 }
 
   Sprites.fromJson(dynamic json) {
-    _backDefault = json['back_default'];
+    _backDefault = json['front_default'];
   }
   String? _backDefault;
 
@@ -232,7 +232,7 @@ class Sprites {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['back_default'] = _backDefault;
+    map['front_default'] = _backDefault;
     return map;
   }
 

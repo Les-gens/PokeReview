@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:poke_review/pages/pokemon_list_page.dart';
 import 'package:provider/provider.dart';
 
-import 'data/viewmodels/pokemon_view_model.dart';
+import 'data/viewmodels/pokemon_list_view_model.dart';
 
 void main() {
   runApp(const MyApp());

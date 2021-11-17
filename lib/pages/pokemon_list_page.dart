@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poke_review/data/viewmodels/pokemon_view_model.dart';
+import 'package:poke_review/data/viewmodels/pokemon_list_view_model.dart';
 import 'package:poke_review/pages/widgets/pokemon_card.dart';
 import 'package:provider/provider.dart';
 
