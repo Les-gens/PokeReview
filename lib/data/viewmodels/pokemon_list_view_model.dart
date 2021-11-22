@@ -5,7 +5,7 @@ import 'package:poke_review/data/providers/pokemon_api_provider.dart';
 class PokemonListViewModel extends ChangeNotifier {
   List<PokemonListItemViewModel> pokemons = <PokemonListItemViewModel>[]; 
 
-  Future<void> fetchPokemon() async {
+  Future<void> fetchAllPokemon() async {
     final results =  await PokemonApiProvider().getAllPokemon();
     pokemons = results.map((item) => PokemonListItemViewModel(pokemon: item)).toList();
     notifyListeners();

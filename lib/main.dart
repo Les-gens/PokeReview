@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:poke_review/pages/pokemon_list_page.dart';
 import 'package:provider/provider.dart';
 
+import 'data/viewmodels/one_pokemon_view_model.dart';
 import 'data/viewmodels/pokemon_list_view_model.dart';
 
 void main() {
@@ -14,23 +15,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ChangeNotifierProvider(
-        create: (context) => PokemonListViewModel(), 
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('PokeReview'),
-          ),
-          body: const Center(
-            child: PokemonListPage(),
-          ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => PokemonListViewModel()),
+        ChangeNotifierProvider(create: (context) => OnePokemonViewModel()),
+      ],
+      child: MaterialApp(
+        home: const PokemonListPage(),
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
       ),
-    );
+    ); 
   }
 }
 

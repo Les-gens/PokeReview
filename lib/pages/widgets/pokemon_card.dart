@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:poke_review/data/viewmodels/pokemon_list_view_model.dart';
+import 'package:poke_review/data/viewmodels/one_pokemon_view_model.dart';
+import 'package:poke_review/pages/pokemon_page.dart';
+import 'package:provider/provider.dart';
 
 class PokemonCard extends StatelessWidget{
 
@@ -14,7 +17,15 @@ class PokemonCard extends StatelessWidget{
     var imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$pokemonId.png';
     return InkWell(
       onTap: () {
-
+        Navigator.push(
+          context, 
+          MaterialPageRoute(
+            builder: (context) => ChangeNotifierProvider(
+              create: (context) => PokemonListViewModel(), 
+              child: PokemonPage(pokemonUrl: pokemon.url ?? 'https://pokeapi.co/api/v2/pokemon/2/',),
+            ),
+          )
+        );
       },
       child: Row(
         children: [
