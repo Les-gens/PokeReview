@@ -26,13 +26,15 @@ class _PokemonPageState extends State<PokemonPage> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<OnePokemonViewModel>(context);
+    var centimeterHeight = (vm.pokemon?.height ?? 7) * 10;
+    var kilogrammWeight = (vm.pokemon?.weight ?? 700) / 10; 
     return CustomScaffold(
       body: Center(
         child: Column(
           children: [
             Text(vm.pokemon?.name ?? 'Totosaur'),
-            Text(vm.pokemon?.weight.toString() ?? '300lbs'),
-            Text(vm.pokemon?.height.toString() ?? '5feet'),
+            Text(kilogrammWeight.toString()+'kg'),
+            Text(centimeterHeight.toString()+'cm'),
             for(var item in vm.pokemon?.types ?? [] ) Text(item.type.name),
 
           ],
