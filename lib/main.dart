@@ -36,15 +36,11 @@ class MyApp extends StatelessWidget {
             ? PokemonListPage()
             : const SignInScreen(),
       ),
-<<<<<<< HEAD
-      home: FirebaseAuth.instance.currentUser != null ? const MyHomePage(title: 'My Home Page') : const SignInScreen(),
-=======
       providers: [
         ChangeNotifierProvider(create: (context) => PokemonListViewModel()),
         ChangeNotifierProvider(create: (context) => OnePokemonViewModel()),
         ChangeNotifierProvider(create: (context) => UserViewModel())
       ],
->>>>>>> e2dcbadd87f9d25783dc8b5929f6ea8fea27aaf4
     );
   }
 }
