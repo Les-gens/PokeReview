@@ -7,7 +7,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase?.initializeApp();
   //runApp(const MyApp());
-  runApp(MaterialApp(home: const MyApp()));
+  runApp(MyApp());
 }
 
 _signOut() async {
