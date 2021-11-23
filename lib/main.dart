@@ -1,7 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:poke_review/signin_screen.dart';
+import 'package:poke_review/data/providers/pokemon_api_provider.dart';
+import 'package:poke_review/data/viewmodels/one_pokemon_view_model.dart';
+import 'package:poke_review/data/viewmodels/user_view_model.dart';
+import 'package:poke_review/pages/pokemon_list_page.dart';
+import 'package:provider/provider.dart';
+import 'data/viewmodels/pokemon_list_view_model.dart';
+import 'pages/auth/signin_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,21 +26,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      child: MaterialApp(
+        title: 'PokeReview',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: FirebaseAuth.instance.currentUser != null
+            ? PokemonListPage()
+            : const SignInScreen(),
       ),
+<<<<<<< HEAD
       home: FirebaseAuth.instance.currentUser != null ? const MyHomePage(title: 'My Home Page') : const SignInScreen(),
+=======
+      providers: [
+        ChangeNotifierProvider(create: (context) => PokemonListViewModel()),
+        ChangeNotifierProvider(create: (context) => OnePokemonViewModel()),
+        ChangeNotifierProvider(create: (context) => UserViewModel())
+      ],
+>>>>>>> e2dcbadd87f9d25783dc8b5929f6ea8fea27aaf4
     );
   }
 }
