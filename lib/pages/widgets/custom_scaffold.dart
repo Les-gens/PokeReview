@@ -17,20 +17,27 @@ class CustomScaffold extends StatelessWidget {
         child: body,
       ),
       drawer: Drawer(
-          child: ListView(padding: EdgeInsets.zero, children: [
-        TextButton(
-            onPressed: () async {
-              await UserViewModel().signOut();
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => const SignInScreen(),
-                ),
-                (route) => false,
-              );
-            },
-            child: Text('Log out'))
-      ])),
+        child: SafeArea(
+          child: ListView(
+            padding: EdgeInsets.zero, 
+            children: [
+              TextButton(
+                onPressed: () async {
+                  await UserViewModel().signOut();
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => const SignInScreen(),
+                    ),
+                    (route) => false,
+                  );
+                },
+                child: const Text('Log out')
+              )
+            ]
+          )
+        ),
+      ),
     );
   }
 }
