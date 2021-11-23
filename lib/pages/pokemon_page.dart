@@ -29,17 +29,14 @@ class _PokemonPageState extends State<PokemonPage> {
     var centimeterHeight = (vm.pokemon?.height ?? 7) * 10;
     var kilogrammWeight = (vm.pokemon?.weight ?? 700) / 10; 
     return CustomScaffold(
-      body: Center(
-        child: Column(
+      body: Column(
           children: [
             Text(vm.pokemon?.name ?? 'Totosaur'),
             Text(kilogrammWeight.toString()+'kg'),
             Text(centimeterHeight.toString()+'cm'),
             for(var item in vm.pokemon?.types ?? [] ) Text(item.type.name),
-
           ],
         ),
-      ),
     );
   }
   
