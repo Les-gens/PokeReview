@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
-import 'package:poke_review/data/providers/pokemon_api_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:poke_review/data/viewmodels/one_pokemon_view_model.dart';
 import 'package:poke_review/data/viewmodels/user_view_model.dart';
 import 'package:poke_review/pages/pokemon_list_page.dart';
-import 'package:provider/provider.dart';
 import 'data/viewmodels/pokemon_list_view_model.dart';
 import 'pages/auth/signin_screen.dart';
 
