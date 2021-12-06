@@ -33,9 +33,11 @@ class _PokemonPageState extends State<PokemonPage> {
           stream: FirebaseFirestore.instance.collection('comments').snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
             var res = [];
-            for (QueryDocumentSnapshot<Object?> i in snapshot.data!.docs){
-              print(i["content"]);
-              res.add(i["content"]);
+            if (snapshot.hasData) {
+              for (QueryDocumentSnapshot<Object?> i in snapshot.data!.docs){
+                print(i["content"]);
+                res.add(i["content"]);
+              }
             }
             if (snapshot.connectionState.toString() == ConnectionState.active.toString()) {
               print(res);
