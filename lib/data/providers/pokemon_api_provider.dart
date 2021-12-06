@@ -20,7 +20,6 @@ class PokemonApiProvider {
     if(responseFromApi.statusCode == 200) {
 
        final body = jsonDecode(responseFromApi.body); 
-       print(body);
        final Iterable json = body["results"];
        return json.map((pokemon) => PokemonListItem.fromJson(pokemon)).toList();
 
@@ -38,7 +37,6 @@ class PokemonApiProvider {
     if(responseFromApi.statusCode == 200) {
 
        final body = jsonDecode(responseFromApi.body); 
-       print(body);
        return Pokemon.fromJson(body);
 
     } else {
