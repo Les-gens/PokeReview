@@ -19,7 +19,6 @@ class _PokemonListPageState extends State<PokemonListPage> {
   @override
   void initState() {
     super.initState();
-    // you can uncomment this to get all batman movies when the page is loaded
     Provider.of<PokemonListViewModel>(context, listen: false).fetchAllPokemon();
   }
 
