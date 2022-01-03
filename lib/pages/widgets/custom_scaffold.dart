@@ -9,9 +9,18 @@ class CustomScaffold extends StatelessWidget {
 
   @override
   Scaffold build(BuildContext context) {
+    var routeName = ModalRoute.of(context)!.settings.name;
     return Scaffold(
+
       appBar: AppBar(
         title: const Text('PokeReview'),
+        actions: [
+          routeName == '/pokemon_details' ? IconButton(
+            onPressed: () => {
+               Navigator.pop(context)
+            }, 
+            icon: const Icon(Icons.close)) : const Text('')
+        ],
       ),
       body: Center(
         child: body,

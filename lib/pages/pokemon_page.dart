@@ -29,7 +29,6 @@ class _PokemonPageState extends State<PokemonPage> {
       body: Column(
         children: [
           PokemonDetails(pokemon: vm.pokemon),
-          for(var item in vm.pokemon?.types ?? [] ) Text(item.type.name),
           SizedBox(
             height: 100,
             child: StreamBuilder(

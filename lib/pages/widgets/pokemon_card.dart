@@ -20,6 +20,7 @@ class PokemonCard extends StatelessWidget{
         Navigator.push(
           context, 
           MaterialPageRoute(
+            settings: const RouteSettings(name: '/pokemon_details'),
             builder: (context) => PokemonPage(pokemonUrl: pokemon.url ?? 'https://pokeapi.co/api/v2/pokemon/2/',),
           )
         );

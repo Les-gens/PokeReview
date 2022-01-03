@@ -38,4 +38,5 @@ class PokemonViewModel {
   int? get weight {return pokemon.weight;}
 
 
+
 }
