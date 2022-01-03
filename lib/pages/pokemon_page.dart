@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:poke_review/data/viewmodels/one_pokemon_view_model.dart';
 import 'package:poke_review/pages/widgets/custom_scaffold.dart';
+import 'package:poke_review/pages/widgets/pokemon_details.dart';
 import 'package:provider/provider.dart';
 
 class PokemonPage extends StatefulWidget {
@@ -29,9 +30,7 @@ class _PokemonPageState extends State<PokemonPage> {
     return CustomScaffold(
       body: Column(
         children: [
-          Text(vm.pokemon?.name ?? 'Totosaur'),
-          Text(kilogrammWeight.toString()+'kg'),
-          Text(centimeterHeight.toString()+'cm'),
+          PokemonDetails(pokemon: vm.pokemon),
           for(var item in vm.pokemon?.types ?? [] ) Text(item.type.name),
           SizedBox(
             height: 100,
