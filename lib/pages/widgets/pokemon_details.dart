@@ -8,7 +8,6 @@ class PokemonDetails extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     var centimeterHeight = (pokemon?.height ?? 7) * 10;
     var kilogrammWeight = (pokemon?.weight ?? 700) / 10; 
     return Column(
