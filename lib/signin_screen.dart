@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:poke_review/main.dart';
+import 'package:poke_review/pages/pokemon_list_page.dart';
 
 import 'register_screen.dart';
 
@@ -49,14 +51,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                const MyHomePage(title: 'Home Page')),
+                            const PokemonListPage()),
                       );
                     } on FirebaseAuthException catch (e) {
                       showDialog(
                         context: context,
                         builder: (ctx) => AlertDialog(
                           title: Text("Ops! Login Failed"),
-                          content: Text('${e.message}'),
+                          content: Text('$e'),
                           actions: [
                             TextButton(
                               onPressed: () {

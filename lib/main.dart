@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:poke_review/data/providers/comments_provider.dart';
+import 'package:poke_review/data/viewmodels/comments_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:poke_review/data/viewmodels/one_pokemon_view_model.dart';
 import 'package:poke_review/data/viewmodels/user_view_model.dart';
@@ -13,7 +15,6 @@ import 'pages/auth/signin_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase?.initializeApp();
-  //runApp(const MyApp());
   runApp(MyApp());
 }
 
@@ -34,13 +35,14 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: FirebaseAuth.instance.currentUser != null
-            ? PokemonListPage()
+            ? const PokemonListPage()
             : const SignInScreen(),
       ),
       providers: [
         ChangeNotifierProvider(create: (context) => PokemonListViewModel()),
         ChangeNotifierProvider(create: (context) => OnePokemonViewModel()),
-        ChangeNotifierProvider(create: (context) => UserViewModel())
+        ChangeNotifierProvider(create: (context) => UserViewModel()),
+        Provider(create: (context) => CommentsProvider()),
       ],
     );
   }

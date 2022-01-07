@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:poke_review/pages/pokemon_list_page.dart';
 import 'main.dart';
 import 'signin_screen.dart';
 
@@ -48,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                            const MyHomePage(title: 'Home Page')),
+                            const PokemonListPage()),
                       );
                     } on FirebaseAuthException catch (e) {
                       showDialog(
