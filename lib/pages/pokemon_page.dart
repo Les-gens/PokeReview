@@ -23,15 +23,12 @@ class _PokemonPageState extends State<PokemonPage> {
     super.initState();
     Provider.of<OnePokemonViewModel>(context, listen: false)
         .fetchPokemon(widget.pokemonUrl);
-    List<String> pokemonUrlSplitted = widget.pokemonUrl.split('/');
-    Provider.of<CommentsProvider>(context, listen: false).getCommentsFromPokemon(pokemonUrlSplitted[pokemonUrlSplitted.length-2])
-        .asBroadcastStream();
   }
 
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<OnePokemonViewModel>(context);
-    final commentsStream = Provider.of<CommentsProvider>(context).comments;
+    final commentsStream = Provider.of<CommentsProvider>(context).getCommentsFromPokemon(vm.pokemon!.id);
 
     return CustomScaffold(
         body: Column(
