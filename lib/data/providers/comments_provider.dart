@@ -53,8 +53,8 @@ class CommentsProvider {
     return commentsCollection.where('pokemonid', isEqualTo: pokemonID.toString()).snapshots().map(_commentsListFromSnapshot);
   }
 
-  void saveComment(var pokemonID, var userID, String content) {
-    commentsCollection.add({
+  Future<void> saveComment(var pokemonID, var userID, String content) async {
+    await commentsCollection.add({
       'content': content,
       'pokemonid': pokemonID,
       'userid': userID,

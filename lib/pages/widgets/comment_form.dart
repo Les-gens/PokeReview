@@ -22,8 +22,8 @@ class _CommentFormState extends State<CommentForm> {
   Future<void> _submit() async {
     CommentsProvider commentsProvider = CommentsProvider();
     final currentUser = FirebaseAuth.instance.currentUser;
-    print('currentuser ' + currentUser.toString());
-    commentsProvider.saveComment(widget.pokemonID, currentUser?.uid, _commentContentController.text);
+    await commentsProvider.saveComment(widget.pokemonID, currentUser?.uid, _commentContentController.text);
+    Navigator.of(context).pop();
   }
 
   @override
