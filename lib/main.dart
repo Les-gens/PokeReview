@@ -7,10 +7,9 @@ import 'package:poke_review/data/providers/comments_provider.dart';
 import 'package:poke_review/data/viewmodels/comments_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:poke_review/data/viewmodels/one_pokemon_view_model.dart';
-import 'package:poke_review/data/viewmodels/user_view_model.dart';
 import 'package:poke_review/pages/pokemon_list_page.dart';
 import 'data/viewmodels/pokemon_list_view_model.dart';
-import 'pages/auth/signin_screen.dart';
+import 'signin_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +40,6 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => PokemonListViewModel()),
         ChangeNotifierProvider(create: (context) => OnePokemonViewModel()),
-        ChangeNotifierProvider(create: (context) => UserViewModel()),
         Provider(create: (context) => CommentsProvider()),
       ],
     );
@@ -127,7 +125,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   if (FirebaseAuth.instance.currentUser == null) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const SignInScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const SignInScreen()),
                     );
                   }
                 },
