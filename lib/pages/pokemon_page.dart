@@ -28,7 +28,7 @@ class _PokemonPageState extends State<PokemonPage> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<OnePokemonViewModel>(context);
-    final commentsStream = Provider.of<CommentsProvider>(context).getCommentsFromPokemon(vm.pokemon!.id);
+    final commentsStream = Provider.of<CommentsProvider>(context).getCommentsFromPokemon(vm.pokemon?.id);
 
     return CustomScaffold(
         body: Column(
@@ -58,10 +58,9 @@ class _PokemonPageState extends State<PokemonPage> {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 children: snapshot.data!.map((Comment comment) {
-              return ListTile(
-                title: Text(comment.content ?? 'toto'),
-                subtitle: Text('tata'),
-              );
+              return Card(child: ListTile(
+                title: Text('Comment: ${comment.content}'  ?? 'no comment found'),
+              ));
             }).toList());
           },
         ),
