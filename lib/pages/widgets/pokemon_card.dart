@@ -28,11 +28,18 @@ class PokemonCard extends StatelessWidget{
       child: Row(
         children: [
           Image.network(imgUrl, width: 100, height: 100),
-          Text('${pokemon.name}', style: const TextStyle(fontSize: 40),),
+          Text('${getCapitalizeString(pokemon.name)}', style: const TextStyle(fontSize: 25, fontFamily: 'PokemonClassic'),),
 
         ],
       )
     );
   }
+
+  String? getCapitalizeString(String? str) {
+    if(str == null){
+      return null;
+    }
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
+}
   
 }

@@ -13,7 +13,11 @@ class CustomScaffold extends StatelessWidget {
     return Scaffold(
 
       appBar: AppBar(
-        title: const Text('PokeReview'),
+        title: const Text('PokeReview', style: 
+        TextStyle(
+          color: Color.fromARGB(255, 255, 203, 5),
+          fontSize: 30, 
+          fontFamily: 'PokemonSolid'),),
         actions: [
           routeName == '/pokemon_details' ? IconButton(
             onPressed: () => {
