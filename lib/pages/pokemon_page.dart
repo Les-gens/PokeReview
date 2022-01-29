@@ -59,7 +59,7 @@ class _PokemonPageState extends State<PokemonPage> {
                 shrinkWrap: true,
                 children: snapshot.data!.map((Comment comment) {
               return Card(child: ListTile(
-                title: Text('Commentary: ${comment.content}'  ?? 'no comment found'),
+                title: Text('Comment: ${comment.content}'),
               ));
             }).toList());
           },

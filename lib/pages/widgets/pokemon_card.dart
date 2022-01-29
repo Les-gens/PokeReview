@@ -40,6 +40,6 @@ class PokemonCard extends StatelessWidget{
       return null;
     }
     return str.substring(0, 1).toUpperCase() + str.substring(1);
-}
+  }
   
 }

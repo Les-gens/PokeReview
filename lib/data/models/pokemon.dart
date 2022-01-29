@@ -12,7 +12,8 @@ class Pokemon {
       Sprites? sprites, 
       List<Stats>? stats, 
       List<Types>? types, 
-      int? weight,}){
+      int? weight,
+      int? experience,}){
     _abilities = abilities;
     _height = height;
     _id = id;
@@ -23,6 +24,7 @@ class Pokemon {
     _stats = stats;
     _types = types;
     _weight = weight;
+    _experience = experience;
   }
 
   Pokemon.fromJson(dynamic json) {
@@ -51,6 +53,7 @@ class Pokemon {
       });
     }
     _weight = json['weight'];
+    _experience = json['base_experience'];
   }
   List<Abilities>? _abilities;
   int? _height;
@@ -62,6 +65,7 @@ class Pokemon {
   List<Stats>? _stats;
   List<Types>? _types;
   int? _weight;
+  int? _experience;
 
   List<Abilities>? get abilities => _abilities;
   int? get height => _height;
@@ -73,6 +77,7 @@ class Pokemon {
   List<Stats>? get stats => _stats;
   List<Types>? get types => _types;
   int? get weight => _weight;
+  int? get experience => _experience;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -94,6 +99,7 @@ class Pokemon {
       map['types'] = _types?.map((v) => v.toJson()).toList();
     }
     map['weight'] = _weight;
+    map['base_experience'] = _experience;
     return map;
   }
 
