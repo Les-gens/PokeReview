@@ -30,7 +30,7 @@ class _CommentFormState extends State<CommentForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Scaffold(
+      child: CustomScaffold(
         body: Column(children: <Widget>[
           TextFormField(controller: _commentContentController),
           ElevatedButton(

@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:poke_review/data/viewmodels/user_view_model.dart';
-import 'package:poke_review/pages/auth/signin_screen.dart';
+import 'package:poke_review/pages/profile_page.dart';
+import 'package:poke_review/signin_screen.dart';
 
 class CustomScaffold extends StatelessWidget {
   final Widget body;
@@ -19,7 +21,7 @@ class CustomScaffold extends StatelessWidget {
           fontSize: 30, 
           fontFamily: 'PokemonSolid'),),
         actions: [
-          routeName == '/pokemon_details' ? IconButton(
+          routeName == '/pokemon_details' || routeName == '/profile_page' ? IconButton(
             onPressed: () => {
                Navigator.pop(context)
             }, 
@@ -36,7 +38,7 @@ class CustomScaffold extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () async {
-                  await UserViewModel().signOut();
+                  await FirebaseAuth.instance.signOut();
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
@@ -46,6 +48,17 @@ class CustomScaffold extends StatelessWidget {
                   );
                 },
                 child: const Text('Log out')
+              ),
+              TextButton(
+                  onPressed: () async {
+                    await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          settings: const RouteSettings(name: '/profile_page'),
+                            builder: (BuildContext context) => const ProfilePage(),
+                        ),
+                    );
+                  }, child: const Text('Profil page')
               )
             ]
           )

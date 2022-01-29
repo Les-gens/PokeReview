@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:poke_review/data/providers/comments_provider.dart';
 import 'package:poke_review/data/viewmodels/comments_view_model.dart';
+import 'package:poke_review/data/viewmodels/user_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:poke_review/data/viewmodels/one_pokemon_view_model.dart';
 import 'package:poke_review/pages/pokemon_list_page.dart';

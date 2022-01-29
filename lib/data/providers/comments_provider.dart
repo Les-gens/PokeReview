@@ -42,8 +42,8 @@ class CommentsProvider {
     return commentsCollection.snapshots().map(_commentsListFromSnapshot);
   }
 
-  Future<Stream<List<Comment>>> get commentsFromCurrentUser async {
-    final currentUser = await FirebaseAuth.instance.currentUser!;
+  Stream<List<Comment>> get commentsFromCurrentUser {
+    final currentUser = FirebaseAuth.instance.currentUser!;
     return commentsCollection.where('userid', isEqualTo: currentUser.uid.toString())
         .snapshots().map(_commentsListFromSnapshot);
   }
