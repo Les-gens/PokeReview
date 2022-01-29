@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:poke_review/data/providers/comments_provider.dart';
 import 'package:poke_review/data/viewmodels/one_pokemon_view_model.dart';
@@ -29,6 +30,7 @@ class _PokemonPageState extends State<PokemonPage> {
   Widget build(BuildContext context) {
     final vm = Provider.of<OnePokemonViewModel>(context);
     final commentsStream = Provider.of<CommentsProvider>(context).getCommentsFromPokemon(vm.pokemon?.id);
+    final user = FirebaseAuth.instance.currentUser;
 
     return CustomScaffold(
         body: Column(
@@ -59,7 +61,7 @@ class _PokemonPageState extends State<PokemonPage> {
                 shrinkWrap: true,
                 children: snapshot.data!.map((Comment comment) {
               return Card(child: ListTile(
-                title: Text('Comment: ${comment.content}'),
+                title: Text('${user?.email?.split('@')[0]}: ${comment.content}'),
               ));
             }).toList());
           },
