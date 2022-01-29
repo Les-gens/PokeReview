@@ -37,6 +37,6 @@ class PokemonViewModel {
 
   int? get weight {return pokemon.weight;}
 
-
+  int? get experience {return pokemon.experience;}
 
 }
