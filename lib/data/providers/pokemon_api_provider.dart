@@ -15,7 +15,7 @@ class PokemonApiProvider {
   PokemonApiProvider._internal();
   
   Future<List<PokemonListItem>> getAllPokemon() async {
-    var uri = Uri.parse('https://pokeapi.co/api/v2/pokemon?limit=20');
+    var uri = Uri.parse('https://pokeapi.co/api/v2/pokemon?limit=52');
     var responseFromApi = await http.get(uri);
     if(responseFromApi.statusCode == 200) {
 
