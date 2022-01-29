@@ -13,19 +13,23 @@ class CustomScaffold extends StatelessWidget {
   Scaffold build(BuildContext context) {
     var routeName = ModalRoute.of(context)!.settings.name;
     return Scaffold(
-
       appBar: AppBar(
-        title: const Text('PokeReview', style: 
-        TextStyle(
-          color: Color.fromARGB(255, 255, 203, 5),
-          fontSize: 30, 
-          fontFamily: 'PokemonSolid'),),
+        title: const Text(
+          'PokeReview',
+          style: TextStyle(
+              color: Color.fromARGB(255, 255, 203, 5),
+              fontSize: 30,
+              fontFamily: 'PokemonSolid'),
+        ),
         actions: [
-          routeName == '/pokemon_details' || routeName == '/profile_page' ? IconButton(
-            onPressed: () => {
-               Navigator.pop(context)
-            }, 
-            icon: const Icon(Icons.close)) : const Text('')
+          routeName == '/pokemon_details' || routeName == '/profile_page'
+              ? IconButton(
+                  onPressed: () => {
+                        Navigator.of(context)
+                            .popUntil((route) => route.isFirst),
+                      },
+                  icon: const Icon(Icons.close))
+              : const Text('')
         ],
       ),
       body: Center(
@@ -33,36 +37,33 @@ class CustomScaffold extends StatelessWidget {
       ),
       drawer: Drawer(
         child: SafeArea(
-          child: ListView(
-            padding: EdgeInsets.zero, 
-            children: [
-              TextButton(
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => const SignInScreen(),
-                    ),
-                    (route) => false,
-                  );
-                },
-                child: const Text('Log out')
-              ),
-              TextButton(
-                  onPressed: () async {
-                    await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          settings: const RouteSettings(name: '/profile_page'),
-                            builder: (BuildContext context) => const ProfilePage(),
-                        ),
-                    );
-                  }, child: const Text('Profil page')
-              )
-            ]
-          )
-        ),
+            child: ListView(padding: EdgeInsets.zero, children: [
+          TextButton(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.pop(context);
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const SignInScreen(),
+                  ),
+                  (route) => false,
+                );
+              },
+              child: const Text('Log out')),
+          TextButton(
+              onPressed: () async {
+                Navigator.pop(context);
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    settings: const RouteSettings(name: '/profile_page'),
+                    builder: (BuildContext context) => const ProfilePage(),
+                  ),
+                );
+              },
+              child: const Text('Profil page'))
+        ])),
       ),
     );
   }
