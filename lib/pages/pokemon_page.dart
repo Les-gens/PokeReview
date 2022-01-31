@@ -29,7 +29,8 @@ class _PokemonPageState extends State<PokemonPage> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<OnePokemonViewModel>(context);
-    final commentsStream = Provider.of<CommentsProvider>(context).getCommentsFromPokemon(vm.pokemon?.id);
+    final commentsStream = Provider.of<CommentsProvider>(context)
+        .getCommentsFromPokemon(vm.pokemon?.id);
     final user = FirebaseAuth.instance.currentUser;
 
     return CustomScaffold(
@@ -37,13 +38,17 @@ class _PokemonPageState extends State<PokemonPage> {
       children: [
         PokemonDetails(pokemon: vm.pokemon),
         Text('Reviews'),
-        IconButton(onPressed: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CommentForm(pokemonID: vm.pokemon!.id.toString())),
-          );
-        }, icon: const Icon(Icons.add), tooltip: 'Add a review'),
+        IconButton(
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        CommentForm(pokemonID: vm.pokemon!.id.toString())),
+              );
+            },
+            icon: const Icon(Icons.add),
+            tooltip: 'Add a review'),
         StreamBuilder<List<Comment>>(
           stream: commentsStream,
           builder:
@@ -60,10 +65,12 @@ class _PokemonPageState extends State<PokemonPage> {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 children: snapshot.data!.map((Comment comment) {
-              return Card(child: ListTile(
-                title: Text('${user?.email?.split('@')[0]}: ${comment.content}'),
-              ));
-            }).toList());
+                  return Card(
+                      child: ListTile(
+                    title: Text(
+                        '${comment.username ?? 'Unknown:'}: ${comment.content}'),
+                  ));
+                }).toList());
           },
         ),
       ],

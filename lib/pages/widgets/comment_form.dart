@@ -15,14 +15,16 @@ class CommentForm extends StatefulWidget {
 }
 
 class _CommentFormState extends State<CommentForm> {
-
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _commentContentController = TextEditingController();
+  final TextEditingController _commentContentController =
+      TextEditingController();
 
   Future<void> _submit() async {
     CommentsProvider commentsProvider = CommentsProvider();
     final currentUser = FirebaseAuth.instance.currentUser;
-    await commentsProvider.saveComment(widget.pokemonID, currentUser?.uid, _commentContentController.text);
+    var username = currentUser!.email!.split('@')[0];
+    await commentsProvider.saveComment(widget.pokemonID, currentUser.uid,
+        _commentContentController.text, username);
     Navigator.of(context).pop();
   }
 
@@ -31,15 +33,16 @@ class _CommentFormState extends State<CommentForm> {
     return Form(
       key: _formKey,
       child: CustomScaffold(
-        body: Column(children: <Widget>[
-          TextFormField(controller: _commentContentController),
-          ElevatedButton(
-            onPressed: _submit,
-            child: Text("submit"),
-          ),
-        ],
+        body: Column(
+          children: <Widget>[
+            TextFormField(controller: _commentContentController),
+            ElevatedButton(
+              onPressed: _submit,
+              child: Text("submit"),
+            ),
+          ],
+        ),
       ),
-    ),
     );
   }
 }

@@ -4,15 +4,21 @@ class Comment {
   String? userid;
   String? pokemonid;
   String? content;
+  String? username;
 
-  Comment({required this.pokemonid, required this.userid, required this.content});
+  Comment(
+      {required this.pokemonid,
+      required this.userid,
+      required this.content,
+      required this.username});
 
   factory Comment.fromJson(Map<String, dynamic> json) => _commentFromJson(json);
 
   Map<String, dynamic> toJson() => _commentToJson(this);
 
   @override
-  String toString() => 'Comment<content: $content, userid: $userid, pokemonid, $pokemonid>';
+  String toString() =>
+      'Comment<content: $content, userid: $userid, pokemonid: $pokemonid, username: $username>';
 }
 
 Comment _commentFromJson(Map<String, dynamic> json) {
@@ -20,6 +26,7 @@ Comment _commentFromJson(Map<String, dynamic> json) {
     content: json['content'] as String,
     pokemonid: json['pokemonid'] as String,
     userid: json['userid'] as String,
+    username: json['username'] as String,
   );
 }
 
@@ -27,4 +34,5 @@ Map<String, dynamic> _commentToJson(Comment instance) => <String, dynamic>{
       'content': instance.content,
       'pokemonid': instance.pokemonid,
       'userid': instance.userid,
+      'username': instance.username,
     };
