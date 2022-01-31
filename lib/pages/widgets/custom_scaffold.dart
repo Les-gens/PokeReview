@@ -22,11 +22,11 @@ class CustomScaffold extends StatelessWidget {
               fontFamily: 'PokemonSolid'),
         ),
         actions: [
-          routeName == '/pokemon_details' || routeName == '/profile_page'
+          routeName == '/pokemon_details'
               ? IconButton(
                   onPressed: () => {
                         Navigator.of(context)
-                            .popUntil((route) => route.isFirst),
+                            .pop(),
                       },
                   icon: const Icon(Icons.close))
               : const Text('')
@@ -35,7 +35,7 @@ class CustomScaffold extends StatelessWidget {
       body: Center(
         child: body,
       ),
-      drawer: Drawer(
+      drawer: routeName != '/profile_page' ? Drawer(
         child: SafeArea(
             child: ListView(padding: EdgeInsets.zero, children: [
           TextButton(
@@ -64,7 +64,7 @@ class CustomScaffold extends StatelessWidget {
               },
               child: const Text('Profil page'))
         ])),
-      ),
+      ) : null,
     );
   }
 }
