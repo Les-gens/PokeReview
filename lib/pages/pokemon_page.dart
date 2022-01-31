@@ -61,16 +61,17 @@ class _PokemonPageState extends State<PokemonPage> {
               return Text("Loading");
             }
             print(snapshot);
-            return ListView(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                children: snapshot.data!.map((Comment comment) {
-                  return Card(
-                      child: ListTile(
-                    title: Text(
-                        '${comment.username ?? 'Unknown:'}: ${comment.content}'),
-                  ));
-                }).toList());
+            return Expanded(
+                child: ListView(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    children: snapshot.data!.map((Comment comment) {
+                      return Card(
+                          child: ListTile(
+                        title: Text(
+                            '${comment.username ?? 'Unknown'}: ${comment.content}'),
+                      ));
+                    }).toList()));
           },
         ),
       ],
